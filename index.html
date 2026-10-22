@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><meta name="theme-color" content="#e7e1cf"/><meta name="description" content="维多利亚皇家马车交互式三维展览：探索黑漆金饰、皇家车厢与精密底盘。"/><title>皇家马车 · The Royal Carriage Atelier</title></head>
+<body>
+<div id="app">
+ <div class="paper-grain"></div><div class="page-frame"><i></i><i></i><i></i><i></i></div><span class="frame-diamond top">◈</span><span class="frame-diamond bottom">◈</span>
+ <header class="masthead"><span class="brand-seal">♛</span><div>THE ROYAL ATELIER<small>HERITAGE CARRIAGE COLLECTION</small></div><span class="edition">EST. MDCCCXXXVII</span></header>
+ <aside class="left-panel">
+  <section class="intro"><div class="eyebrow">COLLECTION No. 001</div><h1>Royal<br>Victorian<br>Carriage<span>皇家 · 维多利亚马车</span></h1><div class="title-rule"><span>INTERACTIVE 3D STUDY</span></div><p>黑漆与鎏金，重现一个时代的华美。<br>旋转、触碰、细看，让每一处工艺<br>在你的指尖徐徐展开。</p></section>
+  <section class="panel controls-panel"><h2><span>01</span> 探索模型 <small>EXPLORE</small></h2><button class="drive wide" data-action="drive" aria-pressed="false"><span data-icon="road"></span><span class="button-label">启程 · DRIVE THE CARRIAGE</span></button><div class="control-grid">
+   <button data-action="doors" aria-pressed="false"><span data-icon="door"></span><span>开启车门</span></button><button data-action="windows" aria-pressed="false"><span data-icon="window"></span><span>降下车窗</span></button>
+   <button data-action="rotate" aria-pressed="false"><span data-icon="rotate"></span><span>自动旋转</span></button><button data-action="wireframe" aria-pressed="false"><span data-icon="cube"></span><span>线框视图</span></button>
+   <button data-action="lights" aria-pressed="false"><span data-icon="lamp"></span><span>点亮车灯</span></button><button data-action="explode" aria-pressed="false"><span data-icon="explode"></span><span>拆解结构</span></button>
+  </div></section>
+  <section class="view-section"><h2>观察视角 <span class="rule-line"></span><small>VIEW</small></h2><div class="views"><button class="selected" data-view="iso"><span data-icon="cube"></span><span>等轴测</span><small>ISO</small></button><button data-view="side"><span data-icon="side"></span><span>侧视</span><small>SIDE</small></button><button data-view="front"><span data-icon="front"></span><span>正视</span><small>FRONT</small></button><button data-view="rear"><span data-icon="front"></span><span>后视</span><small>REAR</small></button></div></section>
+  <section class="panel finish-panel"><h2><span>02</span> 定制材质 <button id="reset-finish" title="重置所有材质">↺ 重置</button></h2><div id="swatches"></div></section>
+  <dl class="specs"><div><dt>MODEL</dt><dd>RVC — 001</dd></div><div><dt>EDITION</dt><dd>ROYAL CEREMONIAL</dd></div><div><dt>CRAFT</dt><dd>GILT & LACQUER</dd></div><div><dt>SCALE</dt><dd>CONCEPT STUDY</dd></div></dl>
+ </aside>
+ <main id="stage" aria-label="交互式三维皇家马车"><canvas id="scene" aria-label="可拖动旋转的三维马车"></canvas><div id="loading"><span class="loader-seal">♛</span><span>正在布置皇家展厅</span><small>PREPARING THE COLLECTION</small></div><div class="stage-heading"><span>PLATE I.</span><span>A STUDY IN CRAFTSMANSHIP</span></div><div id="annotations">
+  <button class="annotation a-roof" data-detail="roof"><span class="annotation-number">1</span><span><strong>鎏金冠饰与顶冠</strong><small>GILDED CROWN & CRESTING</small><em>卷草纹金饰，勾勒皇家仪式的轮廓。</em></span></button>
+  <button class="annotation a-cabin" data-detail="cabin"><span class="annotation-number">2</span><span><strong>皇家座舱与车门</strong><small>ROYAL CABIN & COACHWORK</small><em>深色漆面之下，藏着柔软的象牙白内饰。</em></span></button>
+  <button class="annotation a-lamp" data-detail="lamp"><span class="annotation-number">3</span><span><strong>宫廷灯笼</strong><small>ORNAMENTAL COACH LAMPS</small><em>鎏金灯架与暖色光，照亮归途。</em></span></button>
+  <button class="annotation a-wheel" data-detail="wheel"><span class="annotation-number">4</span><span><strong>辐条车轮与悬挂</strong><small>SPOKED WHEELS & SUSPENSION</small><em>弧形底架，承托一整个时代的优雅。</em></span></button>
+  <svg id="annotation-lines" aria-hidden="true"><path/><path/><path/><path/><circle r="3"/><circle r="3"/><circle r="3"/><circle r="3"/></svg>
+ </div><div class="stage-bottom"><button id="reset-view" title="复位视角" aria-label="复位视角"><span data-icon="rotate"></span></button><div class="gesture-hint"><span class="mouse-icon"></span><span>拖动旋转 <b>·</b> 滚轮缩放 <b>·</b> 点击细节</span></div><div class="model-status"><i></i><span id="status-label">自由探索</span></div></div><div id="toast" role="status"></div>
+ </main>
+ <aside class="right-panel"><section class="panel elevations"><h2>技术三视图 <small>TECHNICAL ELEVATIONS</small></h2><button class="elevation" data-view="side"><canvas id="drawing-side" width="600" height="350"></canvas><span>SIDE ELEVATION</span><div class="dimension"><i></i><span>4 860 MM</span></div></button><button class="elevation" data-view="front"><canvas id="drawing-front" width="600" height="350"></canvas><span>FRONT ELEVATION</span><div class="dimension"><i></i><span>2 140 MM</span></div></button><button class="elevation" data-view="rear"><canvas id="drawing-rear" width="600" height="350"></canvas><span>REAR ELEVATION</span><div class="dimension"><i></i><span>CONSTRUCTION STUDY</span></div></button><span class="drawing-note">示意尺寸 · NOT TO SCALE</span></section>
+ <section class="panel materials"><h2>材质与细节 <small>MATERIAL ARCHIVE</small></h2><div class="material-grid"><button data-material="body"><i class="sample lacquer"></i><span>黑漆木饰</span><small>LACQUER</small></button><button data-material="metal"><i class="sample gilding"></i><span>鎏金雕花</span><small>GILT BRASS</small></button><button data-material="interior"><i class="sample velvet"></i><span>菱格软皮</span><small>SOFT LEATHER</small></button><button id="reference-button"><i class="sample reference"></i><span>原作参考</span><small>REFERENCE ↗</small></button></div></section></aside>
+ <footer><span>THE ROYAL ATELIER <b> / </b> DIGITAL COLLECTION</span><span>DESIGNED TO BE EXPLORED <span class="footer-star">✧</span> 001 / 001</span></footer>
+ <dialog id="detail-dialog"><button class="close-dialog" aria-label="关闭">×</button><div id="detail-content"></div></dialog>
+ <div id="fallback" hidden>此浏览器暂时无法启动三维渲染，请在启用硬件加速的浏览器中打开。<img src="/carriage-reference.png" alt="皇家马车参考图片"/></div>
+</div><script type="module" src="/src/main.js"></script>
+</body></html>
